@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  consul.aspnetcore.example.service:
+    image: consul.aspnetcore.example.service:latest
+    build:
+      context: .
+      dockerfile: Consul.AspNetCore.Example.Service/Dockerfile
+    depends_on: 
+      - consul
+
+  onsul.aspnetcore.example.service:
+    image: consul.aspnetcore.example:latest
+    build:
+      context: .
+      dockerfile: Consul.AspNetCore.Example/Dockerfile
+    depends_on:
+      - consul.aspnetcore.example.service
+      - consul
+
+  consul:
+    image: consul:latest
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    hostname: consul
+    container_name: consul

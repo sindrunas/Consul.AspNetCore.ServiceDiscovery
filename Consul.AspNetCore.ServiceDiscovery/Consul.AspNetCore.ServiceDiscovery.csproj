@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>1.0.1</Version>
+        <Authors>Sebastián Indrunas</Authors>
+        <Copyright></Copyright>
+        <PackageId>Consul.AspNetCore.ServiceDiscovery</PackageId>
+        <PackageTags>Consul;dotnet core;AspNetCore;service discovery</PackageTags>
+        <PackageProjectUrl>https://github.com/sindrunas/Consul.AspNetCore.ServiceDiscovery</PackageProjectUrl>
+        <PackageLicenseUrl></PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/sindrunas/Consul.AspNetCore.ServiceDiscovery</RepositoryUrl>
+        <LangVersion>latest</LangVersion>
+        <Company />
+        <Product>Consul.AspNetCore.ServiceDiscovery</Product>
+        <Description></Description>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Consul" Version="0.7.2.6" />
+      <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions" Version="2.1.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\LICENSE">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+
+</Project>
