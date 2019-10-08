@@ -39,12 +39,6 @@ And that's all. Now your service is being registered to Consul.
 After that if you want to retrieve your service's url from your API Gateway or App you can do it like this:
 
 ```c#
-using (var consulClient = new ConsulClient(c => c.Address = new Uri(@"http://consul:8500")))
-{
-	if (consulClient.Catalog.Service("example").Result.Response.Length > 0)
-	{
-		var serviceData = consulClient.Catalog.Service("example").Result.Response[0];
-		Console.WriteLine($"Your service url is {serviceData.ServiceAddress}:{serviceData.ServicePort}");
-	}
-}
+var svcDiscovery = new ServiceDiscovery(configuration);
+var yourService = svcDiscovery.GetServiceInfo("your_service_name")
 ```

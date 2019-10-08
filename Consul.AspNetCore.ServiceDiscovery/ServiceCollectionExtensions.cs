@@ -15,12 +15,15 @@ namespace Consul.AspNetCore.ServiceDiscovery
 {
     public static class ServiceCollectionExtensions
     {
+        private static string _host;
+
         public static IServiceCollection AddConsul(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<ConsulConfig>(configuration.GetSection("ServiceConfig"));
             services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
             {
                 var host = configuration["ServiceConfig:serviceDiscoveryAddress"];
+                _host = host;
                 consulConfig.Address = new Uri(host);
             }));
             return services;
@@ -54,6 +57,20 @@ namespace Consul.AspNetCore.ServiceDiscovery
             });
 
             return app;
+        }
+
+        public static CatalogService GetServiceAddress(string serviceName)
+        {
+            CatalogService ret = null;
+            using (var consulClient = new ConsulClient(c => c.Address = new Uri(_host)))
+            {
+                while (ret == null)
+                {
+                    ret = consulClient.Catalog.Service(serviceName).Result.Response.Length > 0 ? consulClient.Catalog.Service(serviceName).Result.Response[0] : null;
+                }
+            }
+
+            return ret;
         }
     }
 }
