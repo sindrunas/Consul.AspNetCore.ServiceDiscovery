@@ -40,5 +40,5 @@ After that if you want to retrieve your service's url from your API Gateway or A
 
 ```c#
 var svcDiscovery = new ServiceDiscovery(configuration);
-var yourService = svcDiscovery.GetServiceInfo("your_service_name")
+var yourService = svcDiscovery.GetServiceInfo("your_service_name");
 ```
