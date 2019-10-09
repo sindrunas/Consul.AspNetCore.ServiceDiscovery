@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Net;
 using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server.Features;
@@ -41,7 +42,7 @@ namespace Consul.AspNetCore.ServiceDiscovery
             {
                 ID = $"{consulConfig.Value.ServiceId}-{uri.Port}",
                 Name = consulConfig.Value.ServiceName,
-                Address = $"{uri.Scheme}://{uri.Host}",
+                Address = Dns.GetHostEntry(Dns.GetHostName()).AddressList.Where(o => o.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).First().ToString(),
                 Port = uri.Port,
                 Tags = consulConfig.Value.Tags
             };
