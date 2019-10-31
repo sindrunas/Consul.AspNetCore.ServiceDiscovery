@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Consul.AspNetCore\Consul.AspNetCore.csproj" />
+    <ProjectReference Include="..\Consul.AspNetCore.ServiceDiscovery\Consul.AspNetCore.ServiceDiscovery.csproj" />
   </ItemGroup>
 
 </Project>
