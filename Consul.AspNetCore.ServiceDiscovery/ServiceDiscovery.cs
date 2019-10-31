@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Consul.AspNetCore.ServiceDiscovery
 {
@@ -22,6 +23,7 @@ namespace Consul.AspNetCore.ServiceDiscovery
                 while (ret == null)
                 {
                     ret = consulClient.Catalog.Service(serviceName).Result.Response.Length > 0 ? consulClient.Catalog.Service(serviceName).Result.Response[0] : null;
+                    Thread.Sleep(2000);
                 }
             }
 
